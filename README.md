@@ -4,14 +4,14 @@
 
 An automated bot that monitors RSS feeds and pushes new articles to a Discord channel.
 
-## 🛠 Key Features
+## Key Features
 
-- **Multi-Feed Tracking**: Simultaneously monitors multiple RSS feeds (`feeds.json`)
-- **Duplicate Prevention**: Remembers processed articles (`last_posts.json`)
-- **Scheduled Updates**: Checks feeds every 30 minutes via GitHub Actions
-- **Clean Formatting**: Clear Discord messages display 
+- Multi-Feed Tracking: Simultaneously monitors multiple RSS feeds (`feeds.json`)
+- Duplicate Prevention: Remembers processed articles (`last_posts.json`)
+- Scheduled Updates: Checks feeds every 30 minutes via GitHub Actions
+- Clean Formatting: Clear Discord messages display 
 
-## 🚀 Quick Start
+## Quick Start
 
 1. **Clone the repository**:
 
@@ -41,7 +41,7 @@ An automated bot that monitors RSS feeds and pushes new articles to a Discord ch
      Value: https://discord.com/api/webhooks/...
      ```
 
-## 🔧 Technical Overview
+## Technical Overview
 
 ```mermaid
 sequenceDiagram
