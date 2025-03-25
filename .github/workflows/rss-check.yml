@@ -1,0 +1,26 @@
+name: RSS to Discord
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Toutes les 30 minutes
+  workflow_dispatch:        # Permet de lancer manuellement
+
+jobs:
+  check-feeds:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install rss-parser discord-webhook-node
+
+    - name: Run script
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      run: node main.js

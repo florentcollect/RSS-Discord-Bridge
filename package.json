@@ -1,0 +1,17 @@
+{
+  "name": "rss-dreamteam",
+  "version": "1.0.0",
+  "description": "Un robot pour agréger et pousser des flux RSS dans un salon Discord",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "discord-webhook-node": "^1.1.8",
+    "rss-parser": "^3.13.0"
+  }
+}
