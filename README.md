@@ -1,4 +1,5 @@
 # rss-dreamteam
+
 # RSS Discord webhook
 
 An automated bot that monitors RSS feeds and pushes new articles to a Discord channel.
@@ -13,6 +14,7 @@ An automated bot that monitors RSS feeds and pushes new articles to a Discord ch
 ## 🚀 Quick Start
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/Gabryel666/rss-dreamteam.git
    cd rss-dreamteam
@@ -20,6 +22,7 @@ An automated bot that monitors RSS feeds and pushes new articles to a Discord ch
 
 2. **Configure feeds**:
    Edit `feeds.json` to add your RSS sources:
+
    ```json
    {
      "Hugin & Munin": "https://example.com/feed.rss",
@@ -28,8 +31,11 @@ An automated bot that monitors RSS feeds and pushes new articles to a Discord ch
    ```
 
 3. **Set up Discord**:
+
    - Create a webhook in your Discord channel settings
+
    - Add it to GitHub Secrets:
+
      ```
      Name: DISCORD_WEBHOOK
      Value: https://discord.com/api/webhooks/...
@@ -47,6 +53,7 @@ sequenceDiagram
 ```
 
 ## 📁 File Structure
+
 ```
 .
 ├── .github/
@@ -60,14 +67,19 @@ sequenceDiagram
 ## ⚙️ Customization
 
 To change check frequency:
+
 1. Edit `.github/workflows/rss-check.yml`
+
 2. Modify the schedule:
+
    ```yaml
    - cron: '*/30 * * * *'  # Every 30 minutes
    ```
+
    Examples:  
    `'0 * * * *'` = Hourly  
    `'0 0 * * *'` = Daily
 
 ## 📄 License
+
 MIT © [Gabryel666] - Free for use and modification
