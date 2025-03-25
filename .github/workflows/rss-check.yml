@@ -2,33 +2,33 @@ name: RSS to Discord
 
 on:
   schedule:
-    - cron: '*/30 * * * *'  # Toutes les 30 minutes
-  workflow_dispatch:        # Permet de lancer manuellement
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-    
+    permissions:  # <-- Nouvelle section cruciale !
+      contents: write  # Donne l'accès en écriture
+
     steps:
-    # Étape 1 - Récupère le code
     - uses: actions/checkout@v4
-    
-    # Étape 2 - Installe Node.js
+      with:
+        persist-credentials: false  # Important pour le push
+
     - uses: actions/setup-node@v3
       with:
         node-version: '18'
-    
-    # Étape 3 - Installe les dépendances
+
     - run: npm install rss-parser discord-webhook-node
-    
-    # Étape 4 - Lance le script et sauvegarde les modifications
-    - name: Run script and save data
+
+    - name: Run and Commit
       run: |
         node main.js
-        git config --global user.name "GitHub Actions Bot"
-        git config --global user.email "actions@users.noreply.github.com"
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
         git add last_posts.json
-        git commit -m "Mise à jour last_posts.json [AUTO]" || echo "Aucun changement"
-        git push
+        git commit -m "Update last_posts.json [AUTO]" || echo "Aucun changement"
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
