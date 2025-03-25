@@ -3,7 +3,7 @@ const { Webhook } = require('discord-webhook-node');
 const fs = require('fs');
 
 // Configuration
-const HOOK_URL = 'https://discord.com/api/webhooks/1354085734436438156/12q1tXNI9LRpnNBvwHBFOzkh7rdbq00_raoL4Wi37sYBWQz2DoWcWSn7Pxje8xxdoNsh';
+const HOOK_URL = process.env.DISCORD_WEBHOOK;
 const feeds = require('./feeds.json');
 const hook = new Webhook(HOOK_URL);
 
