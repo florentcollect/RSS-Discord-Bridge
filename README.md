@@ -6,10 +6,10 @@ An automated bot that monitors RSS feeds and pushes new articles to a Discord ch
 
 ## Key Features
 
-- Multi-Feed Tracking: Simultaneously monitors multiple RSS feeds (`feeds.json`)
-- Duplicate Prevention: Remembers processed articles (`last_posts.json`)
-- Scheduled Updates: Checks feeds every 30 minutes via GitHub Actions
-- Clean Formatting: Clear Discord messages display 
+- __Multi-Feed Tracking__ : Simultaneously monitors multiple RSS feeds (`feeds.json`)
+- __Duplicate Prevention__ : Remembers processed articles (`last_posts.json`)
+- __Scheduled Updates__ : Checks feeds every 30 minutes via GitHub Actions
+- __Clean Formatting__ : Clear Discord messages display 
 
 ## Quick Start
 
@@ -52,7 +52,7 @@ sequenceDiagram
     Script->>GitHub: Updates last_posts.json
 ```
 
-## 📁 File Structure
+## File Structure
 
 ```
 .
@@ -64,7 +64,7 @@ sequenceDiagram
 └── main.js                # Core script
 ```
 
-## ⚙️ Customization
+## Customization
 
 To change check frequency:
 
