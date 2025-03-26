@@ -12,6 +12,6 @@
 
 Fix on duplicate management
 
-## RSS-Discord-Bridge v1.01
+## RSS-Discord-Bridge v1.00
 
 Initial release
