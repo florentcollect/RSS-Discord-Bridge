@@ -1,4 +1,4 @@
-# rss-dreamteam
+# rss-to-discord
 
 ## RSS Discord Webhook
 
