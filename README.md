@@ -2,7 +2,7 @@
 
 An automated script that monitors RSS feeds and pushes new articles to Discord channels with multi-channel support.
 
-[Release notes](https://github.com/Gabryel666/RSS-Discord-Bridge/blob/main/release%20notes.md)
+You can check the release notes by clicking on [Release notes](https://github.com/Gabryel666/RSS-Discord-Bridge/blob/main/release%20notes.md)
 
 ## Key Features
 
