@@ -31,4 +31,4 @@ jobs:
         git commit -m "Update last_posts.json [AUTO]" || echo "Aucun changement"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
       env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        DISCORD_WEBHOOKS: ${{ secrets.DISCORD_WEBHOOKS }}
