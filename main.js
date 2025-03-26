@@ -43,7 +43,7 @@ async function checkFeeds() {
         const hook = new Webhook(webhooks[config.webhookKey]); // Utilise le webhook spécifique
         await hook.send(formatDiscordPost(name, lastItem));
         saveLastPost(name, lastItem.link);
-        await new Promise(resolve => setTimeout(resolve, 500)); // Pause anti-rate limit
+        await new Promise(resolve => setTimeout(resolve, 800)); // Pause anti-rate limit
       }
     } catch (error) {
       console.error(`[ERREUR] Flux "${name}" :`, error.message);
