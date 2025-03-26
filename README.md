@@ -17,8 +17,8 @@ You can check the release notes by clicking on [Release notes](https://github.co
 1. **Clone the repository**:
 
    ```
-   git clone https://github.com/Gabryel666/rss-dreamteam.git
-   cd rss-dreamteam
+   git clone https://github.com/Gabryel666/RSS-Discord-Bridge.git
+   cd RSS-Discord-Bridge
    ```
 
 2. **Configure feeds**:
