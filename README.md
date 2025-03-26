@@ -1,4 +1,4 @@
-# rss-to-discord
+# RSS-Discord-Bridge
 
 ## RSS Discord Webhook
 
