@@ -16,10 +16,6 @@ An automated bot that monitors RSS feeds and pushes new articles to Discord chan
 
 1. **Clone the repository**:
 
-   bash
-
-   Copier
-
    ```
    git clone https://github.com/Gabryel666/rss-dreamteam.git
    cd rss-dreamteam
@@ -27,10 +23,6 @@ An automated bot that monitors RSS feeds and pushes new articles to Discord chan
 
 2. **Configure feeds**:
     Edit `feeds.json` with channel routing:
-
-   json
-
-   Copier
 
    ```
    {
@@ -51,10 +43,6 @@ An automated bot that monitors RSS feeds and pushes new articles to Discord chan
 
    - Add them to GitHub Secrets as JSON:
 
-     json
-
-     Copier
-
      ```
      {
        "news": "https://discord.com/api/webhooks/...",
@@ -66,22 +54,14 @@ An automated bot that monitors RSS feeds and pushes new articles to Discord chan
 
 ## Technical Overview
 
-mermaid
-
-Copier
-
-```
 sequenceDiagram
     GitHub Actions->>+Script: Scheduled trigger
     Script->>+RSS Feeds: Fetch updates
     RSS Feeds-->>-Script: New articles
     Script->>+Discord: Route to appropriate channel
     Script->>GitHub: Update tracking database
-```
 
 ## File Structure
-
-Copier
 
 ```
 .
@@ -99,10 +79,6 @@ Copier
 
 Edit `.github/workflows/rss-check.yml`:
 
-yaml
-
-Copier
-
 ```
 - cron: '*/30 * * * *'  # Every 30 minutes
 ```
@@ -118,12 +94,10 @@ Copier
 ### v2.0 - Multi-Channel Support
 
 - **New Feature**: Route feeds to different Discord channels
-
-- Improved Configuration  :
+- Improved Configuration :
   - Structured `feeds.json` with channel mapping
   - Single JSON secret for all webhooks
-
-- Enhanced Error Handling  :
+- Enhanced Error Handling :
   - Better validation of webhook configuration
   - Detailed error logging
 
