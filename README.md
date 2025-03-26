@@ -54,12 +54,20 @@ An automated bot that monitors RSS feeds and pushes new articles to Discord chan
 
 ## Technical Overview
 
+```mermaid
 sequenceDiagram
-    GitHub Actions->>+Script: Scheduled trigger
-    Script->>+RSS Feeds: Fetch updates
-    RSS Feeds-->>-Script: New articles
-    Script->>+Discord: Route to appropriate channel
-    Script->>GitHub: Update tracking database
+    participant GA as GitHub Actions
+    participant Script
+    participant RSS as RSS Feeds
+    participant Discord
+
+    GA->>Script: Déclenchement programmé
+    Script->>RSS: Requête GET
+    RSS-->>Script: Nouveaux articles
+    Script->>Discord: Envoi ciblé
+    Note right of Script: Route vers le bon salon
+    Script->>GA: Mise à jour last_posts.json
+```
 
 ## File Structure
 
@@ -88,18 +96,6 @@ Edit `.github/workflows/rss-check.yml`:
 - `'*/15 * * * *'` - Every 15 minutes
 - `'0 * * * *'` - Hourly
 - `'0 0 * * *'` - Daily
-
-## Release Notes
-
-### v2.0 - Multi-Channel Support
-
-- **New Feature**: Route feeds to different Discord channels
-- Improved Configuration :
-  - Structured `feeds.json` with channel mapping
-  - Single JSON secret for all webhooks
-- Enhanced Error Handling :
-  - Better validation of webhook configuration
-  - Detailed error logging
 
 ## 📄 License
 
