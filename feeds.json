@@ -1,12 +1,42 @@
 {
-  "Le Fix": "https://lefix.di6dent.fr/feed",
-  "Le Grog": "https://www.legrog.org/informations/syndication/accueil",
-  "Le Cyberspace de Jérôme Darmont": "http://darmont.free.fr/?feed=rss2",
-  "Geek Powa": "http://www.geek-powa.fr/feed/",
-  "Radio Rôliste": "http://www.radio-roliste.net/?feed=rss2",
-  "Rôliste TV": "https://feed.ausha.co/yJRYqcaPGvNg",
-  "PTGPTB": "http://ptgptb.fr/rss.xml",
-  "Scriiipt": "http://scriiipt.com/feed/",
-  "Hugin & Munin": "http://hu-mu.blogspot.com/feeds/posts/default",
-  "Guerre & plomb JDR": "https://guerre-plomb.fr/feed/"
+  "Le Fix": {
+    "url": "https://lefix.di6dent.fr/feed",
+    "webhookKey": "actualites"
+  },
+  "Le Grog": {
+    "url": "https://www.legrog.org/informations/syndication/accueil",
+    "webhookKey": "actualites"
+  },
+  "Le Cyberspace de Jérôme Darmont": {
+    "url": "http://darmont.free.fr/?feed=rss2",
+    "webhookKey": "actualites"
+  },
+  "Geek Powa": {
+    "url": "http://www.geek-powa.fr/feed/",
+    "webhookKey": "actualites"
+  },
+  "Radio Rôliste": {
+    "url": "http://www.radio-roliste.net/?feed=rss2",
+    "webhookKey": "actualites"
+  },
+  "Rôliste TV": {
+    "url": "https://feed.ausha.co/yJRYqcaPGvNg",
+    "webhookKey": "actualites"
+  },
+  "PTGPTB": {
+    "url": "http://ptgptb.fr/rss.xml",
+    "webhookKey": "actualites"
+  },
+  "Scriiipt": {
+    "url": "http://scriiipt.com/feed/",
+    "webhookKey": "actualites"
+  },
+  "Hugin & Munin": {
+    "url": "http://hu-mu.blogspot.com/feeds/posts/default",
+    "webhookKey": "actualites"
+  },
+  "Guerre & plomb JDR": {
+    "url": "https://guerre-plomb.fr/feed/",
+    "webhookKey": "actualites"
+  }
 }
