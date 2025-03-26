@@ -2,7 +2,7 @@
 
 ## RSS Discord Webhook
 
-An automated bot that monitors RSS feeds and pushes new articles to Discord channels with multi-channel support.
+An automated script that monitors RSS feeds and pushes new articles to Discord channels with multi-channel support.
 
 ## Key Features
 
