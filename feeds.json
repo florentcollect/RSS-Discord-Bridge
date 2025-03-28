@@ -54,5 +54,13 @@
   "Ind100": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCiNjrf7Xv8x0R9u4EI2pgWQ",
     "webhookKey": "podcasts"
+  },
+  "SciFi-Universe critiques": {
+    "url": "http://feeds.feedburner.com/SciFi-Universe-Critiques",
+    "webhookKey": "podcasts"
+  },
+  "SciFi-Universe actualités": {
+    "url": "http://feeds.feedburner.com/SciFi-Universe",
+    "webhookKey": "podcasts"
   }
 }
