@@ -23,8 +23,8 @@
     "url": "http://ptgptb.fr/rss.xml",
     "webhookKey": "actualites"
   },
-  "Scriiipt": {
-    "url": "http://scriiipt.com/feed/",
+  "Jeuxderole.com": {
+    "url": "https://www.jeuxderole.com/feed/",
     "webhookKey": "actualites"
   },
   "Hugin & Munin": {
