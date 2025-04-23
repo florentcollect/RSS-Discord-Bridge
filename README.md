@@ -100,16 +100,3 @@ Edit `.github/workflows/rss-check.yml`:
 ## 📄 License
 
 MIT © [Gabryel666] - Free for use and modification
-
-```mermaid
-graph TD
-    A((1)) 
-    B((2)) 
-    C((3)) 
-    A --- B
-    B --- C
-    C --- A
-    style A fill:#fff,stroke:#333,stroke-width:3px
-    style B fill:#fff,stroke:#333,stroke-width:3px
-    style C fill:#fff,stroke:#333,stroke-width:3px
-```
