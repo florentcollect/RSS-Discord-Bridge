@@ -63,4 +63,8 @@
     "url": "http://feeds.feedburner.com/SciFi-Universe",
     "webhookKey": "actualites"
   }
+    "News": {
+    "url": "https://github.com/Gabryel666.atom",
+    "webhookKey": "outils"
+  }
 }
