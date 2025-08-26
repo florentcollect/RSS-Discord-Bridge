@@ -3,7 +3,8 @@ const { Webhook } = require('discord-webhook-node');
 const fs = require('fs');
 
 // Configuration
-const webhooks = JSON.parse(process.env.DISCORD_WEBHOOKS); // Récupère tous les webhooks
+// Récupère l'objet JSON contenant tous les webhooks depuis les secrets GitHub
+const webhooks = JSON.parse(process.env.DISCORD_WEBHOOKS); 
 const feeds = require('./feeds.json');
 
 // Gestion des doublons
@@ -23,9 +24,9 @@ function saveLastPost(feedName, postLink) {
   fs.writeFileSync(LAST_POSTS_FILE, JSON.stringify(lastPosts, null, 2));
 }
 
-// Formatage Discord (identique à l'original)
+// Formatage du message pour Discord
 function formatDiscordPost(feedName, item) {
-  return `\u200b\n🔔 **${feedName}**\n# [${item.title}](${item.link})`;
+  return `\u200b\n📢 **${feedName}**\n# [${item.title}](${item.link})`;
 }
 
 async function checkFeeds() {
@@ -40,10 +41,13 @@ async function checkFeeds() {
       if (!lastItem?.link) continue;
 
       if (lastPosts[name] !== lastItem.link) {
-        const hook = new Webhook(webhooks[config.webhookKey]); // Utilise le webhook spécifique
+        // Utilise la clé du webhook spécifiée dans feeds.json pour trouver la bonne URL
+        const hook = new Webhook(webhooks[config.webhookKey]); 
+        
         await hook.send(formatDiscordPost(name, lastItem));
         saveLastPost(name, lastItem.link);
-        await new Promise(resolve => setTimeout(resolve, 800)); // Pause anti-rate limit
+        // Pause de 800ms pour ne pas se faire bloquer par l'API de Discord
+        await new Promise(resolve => setTimeout(resolve, 800)); 
       }
     } catch (error) {
       console.error(`[ERREUR] Flux "${name}" :`, error.message);
