@@ -146,5 +146,37 @@
   "Darrington Press (Daggerheart)": {
     "url": "https://darringtonpress.com/blog/feed/",
     "webhookKey": "flux-rss"
+  },
+  paizo ? "Antre Monde": {
+    "url": "https://antre-monde.com/feed/",
+    "webhookKey": "flux-rss"
+  },
+  "Odonata Éditions": {
+    "url": "https://odonata-editions.fr/feed/",
+    "webhookKey": "flux-rss"
+  },
+  "La Loutre Rôliste": {
+    "url": "https://www.laloutreroliste.com/feed/",
+    "webhookKey": "flux-rss"
+  },
+  "500 Nuances de Geek": {
+    "url": "https://www.500nuancesdegeek.fr/feed/",
+    "webhookKey": "flux-rss"
+  },
+  "Paizo (Pathfinder, Starfinder)": {
+    "url": "https://paizo.com/community/blog/rss",
+    "webhookKey": "flux-rss"
+  },
+  "Pinnacle Entertainment Group (Savage Worlds)": {
+    "url": "https://peginc.com/feed/",
+    "webhookKey": "flux-rss"
+  },
+  "Wizards of the Coast (D&D Beyond)": {
+    "url": "https://www.dndbeyond.com/posts.rss",
+    "webhookKey": "flux-rss"
+  },
+  "Torgan.net (Savage Worlds FR)": {
+    "url": "https://savage.torgan.net/feed/",
+    "webhookKey": "flux-rss"
   }
 }
