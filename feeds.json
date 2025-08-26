@@ -27,10 +27,6 @@
     "url": "https://www.jeuxderole.com/feed/",
     "webhookKey": "flux-rss"
   },
-  "Hugin & Munin": {
-    "url": "http://hu-mu.blogspot.com/feeds/posts/default",
-    "webhookKey": "flux-rss"
-  },
   "Guerre & plomb JDR": {
     "url": "https://guerre-plomb.fr/feed/",
     "webhookKey": "flux-rss"
@@ -79,10 +75,6 @@
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCdx6kNIZ4su6WiqLxcQSVfQ",
     "webhookKey": "flux-rss"
   },
-  "EN World Live": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC3-MF1-fd-y3-2_m2C2d2-g",
-    "webhookKey": "flux-rss"
-  },
   "Ginny Di": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCe_sAHQJ_C6sWqA6a2y0fxA",
     "webhookKey": "flux-rss"
@@ -97,14 +89,6 @@
   },
   "Geek Native": {
     "url": "https://www.geeknative.com/feed/",
-    "webhookKey": "flux-rss"
-  },
-  "RPGnews.com": {
-    "url": "https://www.rpg.net/reviews/rss/all.phtml",
-    "webhookKey": "flux-rss"
-  },
-  "The Gauntlet Blog": {
-    "url": "https://www.gauntlet-rpg.com/blog?format=rss",
     "webhookKey": "flux-rss"
   },
   "Critical Role": {
