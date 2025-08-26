@@ -22,7 +22,7 @@ You can check the release notes by clicking on [Release notes](https://github.co
    ```
 
 2. **Configure feeds**:
-    Edit `feeds.json` with channel routing:
+    Edit `feeds.json` with channel routing (unique name required)
 
    ```
    {
