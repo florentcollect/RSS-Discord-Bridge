@@ -55,7 +55,7 @@ async function checkFeeds() {
 
       if (lastPosts[name] !== lastItem.link) {
         // *** FIX N°1 : On passe l'URL dans un objet comme attendu par la librairie ***
-        const hook = new Webhook({ url: webhooks[config.webhookKey] });
+        const hook = new Webhook(webhooks[config.webhookKey]);
         
         const messagePayload = formatDiscordPost(name, lastItem);
         await hook.send(messagePayload);
