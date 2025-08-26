@@ -20,7 +20,39 @@ function saveLastPost(feedName, postLink) {
   fs.writeFileSync(LAST_POSTS_FILE, JSON.stringify(lastPosts, null, 2));
 }
 
-// === VERSION AMÉLIORÉE DE LA FONCTION ===
+/**
+ * Cherche une URL d'image dans un item de flux RSS selon plusieurs stratégies.
+ * @param {object} item L'item du flux RSS.
+ * @returns {string|null} L'URL de l'image ou null si aucune n'est trouvée.
+ */
+function findImageUrl(item) {
+  // Priorité N°1 : La balise <enclosure> (la plus fiable)
+  if (item.enclosure && item.enclosure.url && item.enclosure.type.startsWith('image')) {
+    return item.enclosure.url;
+  }
+
+  // Priorité N°2 : La balise <media:content> (très courant sur les flux d'actualités)
+  if (item['media:content'] && item['media:content'].$ && item['media:content'].$.url) {
+    return item['media:content'].$.url;
+  }
+
+  // Priorité N°3 : On cherche la première balise <img> dans le contenu HTML
+  const content = item.content || item['content:encoded'] || '';
+  const match = content.match(/<img[^>]+src="([^">]+)"/);
+  if (match && match[1]) {
+    return match[1]; // match[1] contient l'URL capturée
+  }
+
+  // Si on n'a absolument rien trouvé
+  return null;
+}
+
+/**
+ * Formatte un item de flux RSS pour un message Discord.
+ * @param {string} feedName Le nom du flux.
+ * @param {object} item L'item du flux RSS.
+ * @returns {object} Le payload du message pour l'API Discord.
+ */
 function formatDiscordPost(feedName, item) {
   // On commence par créer la base de l'embed
   const embed = {
@@ -34,18 +66,16 @@ function formatDiscordPost(feedName, item) {
   };
 
   // 1. On essaie d'ajouter une description (le "chapeau")
-  // On utilise 'contentSnippet' qui est souvent un bon résumé
   if (item.contentSnippet) {
-    // On coupe le texte s'il est trop long pour ne pas faire un pavé
     embed.description = item.contentSnippet.length > 280 
       ? item.contentSnippet.substring(0, 277) + '...' 
       : item.contentSnippet;
   }
 
-  // 2. On essaie d'ajouter une image de preview
-  // La source la plus fiable est la balise 'enclosure' du flux RSS
-  if (item.enclosure && item.enclosure.type && item.enclosure.type.startsWith('image')) {
-    embed.image = { url: item.enclosure.url };
+  // 2. NOUVELLE LOGIQUE D'IMAGE : On utilise notre fonction de recherche
+  const imageUrl = findImageUrl(item);
+  if (imageUrl) {
+    embed.image = { url: imageUrl };
   }
 
   return {
@@ -77,6 +107,7 @@ async function checkFeeds() {
         
         saveLastPost(name, lastItem.link);
         
+        // Petite pause pour éviter de spammer les APIs
         await new Promise(resolve => setTimeout(resolve, 1500));
       }
     } catch (error) {
