@@ -1,5 +1,6 @@
 const RSSParser = require('rss-parser');
-const { Webhook } = require('webhook-discord');
+// *** NOUVELLE LIBRAIRIE OFFICIELLE ***
+const { WebhookClient } = require('@discordjs/webhook-client');
 const fs = require('fs');
 
 // Configuration (rien ne change)
@@ -23,6 +24,7 @@ function saveLastPost(feedName, postLink) {
   fs.writeFileSync(LAST_POSTS_FILE, JSON.stringify(lastPosts, null, 2));
 }
 
+// Le format du message ne change pas, il est déjà correct
 function formatDiscordPost(feedName, item) {
   return {
     embeds: [{
@@ -54,16 +56,16 @@ async function checkFeeds() {
       if (!lastItem?.link) continue;
 
       if (lastPosts[name] !== lastItem.link) {
-        // *** FIX N°1 : On passe l'URL dans un objet comme attendu par la librairie ***
-        const hook = new Webhook(webhooks[config.webhookKey]);
+        // *** ON UTILISE LE NOUVEAU CLIENT WEBHOOK ***
+        // Il attend l'URL dans un objet, ce qui est beaucoup plus clair
+        const hook = new WebhookClient({ url: webhooks[config.webhookKey] });
         
         const messagePayload = formatDiscordPost(name, lastItem);
         await hook.send(messagePayload);
         
         saveLastPost(name, lastItem.link);
-
-        // *** FIX N°2 : On augmente la pause pour éviter le rate limit de Discord ***
-        await new Promise(resolve => setTimeout(resolve, 1500)); // Pause de 1.5 secondes
+        
+        await new Promise(resolve => setTimeout(resolve, 1500));
       }
     } catch (error) {
       console.error(`[ERREUR] Flux "${name}" :`, error.message);
