@@ -2,36 +2,38 @@ name: RSS to Discord
 
 on:
   schedule:
-    - cron: '*/60 * * * *'
+    - cron: '0 * * * *'   # toutes les 60 min en UTC
   workflow_dispatch:
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-    - uses: actions/checkout@v4
-      with:
-        persist-credentials: false
+      - uses: actions/checkout@v4
 
-    - uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Setup Node 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'npm'
 
-    - name: Install dependencies
-      run: npm install rss-parser discord.js
+      - name: Install deps
+        run: npm ci
+        # si tu n'as pas de package.json, remplace par :
+        # run: npm install rss-parser discord.js
 
-    - name: Run and Commit
-      run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
-        git reset --hard
-        git pull --rebase https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
-        node main.js
-        git add last_posts.json
-        git commit -m "Update last_posts.json [AUTO]" || echo "Aucun changement"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-      env:
-        DISCORD_WEBHOOKS: ${{ secrets.DISCORD_WEBHOOKS }}
+      - name: Préflight checks
+        run: |
+          echo "Node version:" && node -v
+          test -f feeds.json || (echo "feeds.json manquant" && exit 1)
+          node -e "try{require.resolve('rss-parser');require.resolve('discord.js');console.log('Dépendances OK')}catch(e){console.error('Dépendances manquantes:',e.message);process.exit(1)}"
+          node -e "try{const w=JSON.parse(process.env.DISCORD_WEBHOOKS||'');if(!Object.keys(w).length)throw new Error('JSON vide');console.log('DISCORD_WEBHOOKS OK')}catch(e){console.error('DISCORD_WEBHOOKS invalide:',e.message);process.exit(1)}"
+        env:
+          DISCORD_WEBHOOKS: ${{ secrets.DISCORD_WEBHOOKS }}
+
+      - name: Run
+        run: node main.js
+        env:
+          DISCORD_WEBHOOKS: ${{ secrets.DISCORD_WEBHOOKS }}
+
