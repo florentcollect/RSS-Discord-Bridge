@@ -126,6 +126,25 @@
   "Web DM": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC7XFmdssWgaPzGyGbKk8GaQ",
     "webhookKey": "flux-rss"
+  },
+  "Gus & Co (JDR)": {
+    "url": "https://gusandco.net/category/jeux-de-role/feed/",
+    "webhookKey": "actualites"
+  },
+  "Black Book Editions": {
+    "url": "https://www.black-book-editions.fr/rss.xml",
+    "webhookKey": "actualites"
+  },
+  "Shadowrun JDR FR": {
+    "url": "https://shadowrun-jdr.fr/feed/",
+    "webhookKey": "flux-rss"
+  },
+  "MCDM Productions (Draw Steel)": {
+    "url": "https://www.mcdmproductions.com/mcdm-presents-podcast?format=rss",
+    "webhookKey": "flux-rss"
+  },
+  "Darrington Press (Daggerheart)": {
+    "url": "https://darringtonpress.com/blog/feed/",
+    "webhookKey": "flux-rss"
   }
 }
-
