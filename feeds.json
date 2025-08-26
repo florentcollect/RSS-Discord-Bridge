@@ -147,7 +147,7 @@
     "url": "https://darringtonpress.com/blog/feed/",
     "webhookKey": "flux-rss"
   },
-  paizo ? "Antre Monde": {
+  "Antre Monde": {
     "url": "https://antre-monde.com/feed/",
     "webhookKey": "flux-rss"
   },
