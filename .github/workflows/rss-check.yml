@@ -1,37 +1,40 @@
+# .github/workflows/rss-check.yml
+
 name: RSS to Discord
 
 on:
   schedule:
-    - cron: '*/60 * * * *'
+    # Se déclenche toutes les 15 minutes
+    - cron: '*/15 * * * *'
+  # Permet de le lancer manuellement depuis l'onglet Actions de GitHub
   workflow_dispatch:
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-    - uses: actions/checkout@v4
-      with:
-        persist-credentials: false
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-    - uses: actions/setup-node@v3
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
       with:
         node-version: '18'
+        cache: 'npm'
 
     - name: Install dependencies
       run: npm install rss-parser discord.js
 
-    - name: Run and Commit
-      run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
-        git reset --hard
-        git pull --rebase https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
-        node main.js
-        git add last_posts.json
-        git commit -m "Update last_posts.json [AUTO]" || echo "Aucun changement"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+    - name: Run script to check feeds
+      run: node main.js
       env:
         DISCORD_WEBHOOKS: ${{ secrets.DISCORD_WEBHOOKS }}
+
+    - name: Commit updated last_posts.json
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: 'chore: Update last posts from RSS feeds'
+        file_pattern: 'last_posts.json'
+        commit_user_name: 'GitHub Actions Bot'
+        commit_user_email: 'actions@github.com'
