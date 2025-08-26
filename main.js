@@ -1,13 +1,11 @@
 const RSSParser = require('rss-parser');
-// *** NOUVELLE LIBRAIRIE OFFICIELLE ***
-const { WebhookClient } = require('@discordjs/webhook-client');
+// On importe depuis la bonne librairie : 'discord.js'
+const { WebhookClient } = require('discord.js');
 const fs = require('fs');
 
-// Configuration (rien ne change)
+// Le reste du code est déjà correct
 const webhooks = JSON.parse(process.env.DISCORD_WEBHOOKS); 
 const feeds = require('./feeds.json');
-
-// Gestion des doublons (rien ne change)
 const LAST_POSTS_FILE = 'last_posts.json';
 
 function loadLastPosts() {
@@ -24,7 +22,6 @@ function saveLastPost(feedName, postLink) {
   fs.writeFileSync(LAST_POSTS_FILE, JSON.stringify(lastPosts, null, 2));
 }
 
-// Le format du message ne change pas, il est déjà correct
 function formatDiscordPost(feedName, item) {
   return {
     embeds: [{
@@ -56,8 +53,6 @@ async function checkFeeds() {
       if (!lastItem?.link) continue;
 
       if (lastPosts[name] !== lastItem.link) {
-        // *** ON UTILISE LE NOUVEAU CLIENT WEBHOOK ***
-        // Il attend l'URL dans un objet, ce qui est beaucoup plus clair
         const hook = new WebhookClient({ url: webhooks[config.webhookKey] });
         
         const messagePayload = formatDiscordPost(name, lastItem);
