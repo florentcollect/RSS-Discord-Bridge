@@ -1,9 +1,7 @@
 const RSSParser = require('rss-parser');
-// On importe depuis la bonne librairie : 'discord.js'
 const { WebhookClient } = require('discord.js');
 const fs = require('fs');
 
-// Le reste du code est déjà correct
 const webhooks = JSON.parse(process.env.DISCORD_WEBHOOKS); 
 const feeds = require('./feeds.json');
 const LAST_POSTS_FILE = 'last_posts.json';
@@ -22,17 +20,36 @@ function saveLastPost(feedName, postLink) {
   fs.writeFileSync(LAST_POSTS_FILE, JSON.stringify(lastPosts, null, 2));
 }
 
+// === VERSION AMÉLIORÉE DE LA FONCTION ===
 function formatDiscordPost(feedName, item) {
+  // On commence par créer la base de l'embed
+  const embed = {
+    author: {
+      name: feedName
+    },
+    title: item.title,
+    url: item.link,
+    color: 0x0099ff,
+    timestamp: new Date().toISOString()
+  };
+
+  // 1. On essaie d'ajouter une description (le "chapeau")
+  // On utilise 'contentSnippet' qui est souvent un bon résumé
+  if (item.contentSnippet) {
+    // On coupe le texte s'il est trop long pour ne pas faire un pavé
+    embed.description = item.contentSnippet.length > 280 
+      ? item.contentSnippet.substring(0, 277) + '...' 
+      : item.contentSnippet;
+  }
+
+  // 2. On essaie d'ajouter une image de preview
+  // La source la plus fiable est la balise 'enclosure' du flux RSS
+  if (item.enclosure && item.enclosure.type && item.enclosure.type.startsWith('image')) {
+    embed.image = { url: item.enclosure.url };
+  }
+
   return {
-    embeds: [{
-      author: {
-        name: feedName
-      },
-      title: item.title,
-      url: item.link,
-      color: 0x0099ff,
-      timestamp: new Date().toISOString()
-    }]
+    embeds: [embed]
   };
 }
 
