@@ -7,14 +7,14 @@ on:
 
 jobs:
   run-bot:
-    runs-on: ubuntu-latest 
-    permissions:  # <-- Nouvelle section cruciale !
-      contents: write  # Donne l'accès en écriture
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
     - uses: actions/checkout@v4
       with:
-        persist-credentials: false  # Important pour le push
+        persist-credentials: false
 
     - uses: actions/setup-node@v3
       with:
@@ -24,13 +24,13 @@ jobs:
 
     - name: Run and Commit
       run: |
-      git config --global user.name "GitHub Actions"
-      git config --global user.email "actions@github.com"
-      git reset --hard
-      git pull --rebase https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
-      node main.js
-      git add last_posts.json
-      git commit -m "Update last_posts.json [AUTO]" || echo "Aucun changement"
-      git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-    env:
-      DISCORD_WEBHOOKS: ${{ secrets.DISCORD_WEBHOOKS }}
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git reset --hard
+        git pull --rebase https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
+        node main.js
+        git add last_posts.json
+        git commit -m "Update last_posts.json [AUTO]" || echo "Aucun changement"
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+      env:
+        DISCORD_WEBHOOKS: ${{ secrets.DISCORD_WEBHOOKS }}
