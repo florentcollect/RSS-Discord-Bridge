@@ -59,10 +59,6 @@
     "url": "https://github.com/Gabryel666.atom",
     "webhookKey": "flux-rss"
   },
-  "Matthew Colville": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCs4br3oZLU0s62l_eIrdO_A",
-    "webhookKey": "flux-rss"
-  },
   "Au bazar d'Hectelyon": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0dvOdVXw_sHmb3w3RtJ2w",
     "webhookKey": "flux-rss"
@@ -73,14 +69,6 @@
   },
   "Chaosium": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCdx6kNIZ4su6WiqLxcQSVfQ",
-    "webhookKey": "flux-rss"
-  },
-  "Ginny Di": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCe_sAHQJ_C6sWqA6a2y0fxA",
-    "webhookKey": "flux-rss"
-  },
-  "EN World": {
-    "url": "https://www.enworld.org/forum/external.php?do=rss&type=newcontent&sectionid=1&days=120&count=20",
     "webhookKey": "flux-rss"
   },
   "Dicebreaker": {
