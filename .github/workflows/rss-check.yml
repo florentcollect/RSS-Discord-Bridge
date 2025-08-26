@@ -7,7 +7,7 @@ on:
 
 jobs:
   run-bot:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest 
     permissions:  # <-- Nouvelle section cruciale !
       contents: write  # Donne l'accès en écriture
 
