@@ -8,19 +8,19 @@
     "webhookKey": "flux-rss"
   },
   "Le Cyberspace de Jérôme Darmont": {
-    "url": "http://darmont.free.fr/?feed=rss2",
+    "url": "https://darmont.free.fr/?feed=rss2",
     "webhookKey": "flux-rss"
   },
   "Geek Powa": {
-    "url": "http://www.geek-powa.fr/feed/",
+    "url": "https://www.geek-powa.fr/feed/",
     "webhookKey": "flux-rss"
   },
   "Radio Rôliste": {
-    "url": "http://www.radio-roliste.net/?feed=rss2",
+    "url": "https://www.radio-roliste.net/?feed=rss2",
     "webhookKey": "flux-rss"
   },
   "PTGPTB": {
-    "url": "http://ptgptb.fr/rss.xml",
+    "url": "https://ptgptb.fr/rss.xml",
     "webhookKey": "flux-rss"
   },
   "Jeuxderole.com": {
@@ -48,11 +48,11 @@
     "webhookKey": "flux-rss"
   },
   "SciFi-Universe critiques": {
-    "url": "http://feeds.feedburner.com/SciFi-Universe-Critiques",
+    "url": "https://feeds.feedburner.com/SciFi-Universe-Critiques",
     "webhookKey": "flux-rss"
   },
   "SciFi-Universe actualités": {
-    "url": "http://feeds.feedburner.com/SciFi-Universe",
+    "url": "https://feeds.feedburner.com/SciFi-Universe",
     "webhookKey": "flux-rss"
   },
   "News": {
@@ -80,7 +80,7 @@
     "webhookKey": "flux-rss"
   },
   "EN World": {
-    "url": "http://www.enworld.org/forum/external.php?do=rss&type=newcontent&sectionid=1&days=120&count=20",
+    "url": "https://www.enworld.org/forum/external.php?do=rss&type=newcontent&sectionid=1&days=120&count=20",
     "webhookKey": "flux-rss"
   },
   "Dicebreaker": {
