@@ -1,13 +1,13 @@
 const RSSParser = require('rss-parser');
-const { Webhook } = require('discord-webhook-node');
+// On importe les deux outils de la nouvelle librairie
+const { Webhook, MessageBuilder } = require('webhook-discord');
 const fs = require('fs');
 
-// Configuration
-// Récupère l'objet JSON contenant tous les webhooks depuis les secrets GitHub
+// Configuration (rien ne change ici)
 const webhooks = JSON.parse(process.env.DISCORD_WEBHOOKS); 
 const feeds = require('./feeds.json');
 
-// Gestion des doublons
+// Gestion des doublons (rien ne change ici)
 const LAST_POSTS_FILE = 'last_posts.json';
 
 function loadLastPosts() {
@@ -24,9 +24,14 @@ function saveLastPost(feedName, postLink) {
   fs.writeFileSync(LAST_POSTS_FILE, JSON.stringify(lastPosts, null, 2));
 }
 
-// Formatage du message pour Discord
+// Le formatage du message va maintenant créer un "embed"
 function formatDiscordPost(feedName, item) {
-  return `\u200b\n📢 **${feedName}**\n# [${item.title}](${item.link})`;
+  return new MessageBuilder()
+    .setName(feedName) // Le nom du flux apparaît en haut
+    .setTitle(item.title)
+    .setURL(item.link)
+    .setColor('#0099ff') // Une couleur pour la barre latérale de l'embed
+    .setTimestamp();
 }
 
 async function checkFeeds() {
@@ -41,12 +46,14 @@ async function checkFeeds() {
       if (!lastItem?.link) continue;
 
       if (lastPosts[name] !== lastItem.link) {
-        // Utilise la clé du webhook spécifiée dans feeds.json pour trouver la bonne URL
-        const hook = new Webhook(webhooks[config.webhookKey]); 
+        // La création du webhook ne change pas
+        const hook = new Webhook(webhooks[config.webhookKey]);
         
-        await hook.send(formatDiscordPost(name, lastItem));
+        // On envoie l'embed formaté
+        const embed = formatDiscordPost(name, lastItem);
+        await hook.send(embed);
+        
         saveLastPost(name, lastItem.link);
-        // Pause de 800ms pour ne pas se faire bloquer par l'API de Discord
         await new Promise(resolve => setTimeout(resolve, 800)); 
       }
     } catch (error) {
