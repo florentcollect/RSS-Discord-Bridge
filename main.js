@@ -1,13 +1,12 @@
 const RSSParser = require('rss-parser');
-// On importe les deux outils de la nouvelle librairie
-const { Webhook, MessageBuilder } = require('webhook-discord');
+const { Webhook } = require('webhook-discord'); // On n'a besoin que de Webhook
 const fs = require('fs');
 
-// Configuration (rien ne change ici)
+// Configuration (rien ne change)
 const webhooks = JSON.parse(process.env.DISCORD_WEBHOOKS); 
 const feeds = require('./feeds.json');
 
-// Gestion des doublons (rien ne change ici)
+// Gestion des doublons (rien ne change)
 const LAST_POSTS_FILE = 'last_posts.json';
 
 function loadLastPosts() {
@@ -24,14 +23,20 @@ function saveLastPost(feedName, postLink) {
   fs.writeFileSync(LAST_POSTS_FILE, JSON.stringify(lastPosts, null, 2));
 }
 
-// Le formatage du message va maintenant créer un "embed"
+// *** C'est ici que la logique change ***
+// On va créer un objet "embed" manuellement, ce qui est plus standard.
 function formatDiscordPost(feedName, item) {
-  return new MessageBuilder()
-    .setName(feedName) // Le nom du flux apparaît en haut
-    .setTitle(item.title)
-    .setURL(item.link)
-    .setColor('#0099ff') // Une couleur pour la barre latérale de l'embed
-    .setTimestamp();
+  return {
+    embeds: [{
+      author: {
+        name: feedName // Le nom du flux apparaît en haut
+      },
+      title: item.title,
+      url: item.link,
+      color: 0x0099ff, // Couleur en format numérique
+      timestamp: new Date().toISOString()
+    }]
+  };
 }
 
 async function checkFeeds() {
@@ -40,18 +45,23 @@ async function checkFeeds() {
 
   for (const [name, config] of Object.entries(feeds)) {
     try {
+      // Ajout d'une vérification pour l'erreur de config
+      if (!config || typeof config.url !== 'string') {
+        console.error(`[CONFIG ERREUR] Flux "${name}" a une configuration invalide dans feeds.json.`);
+        continue;
+      }
+
       const feed = await parser.parseURL(config.url);
       const lastItem = feed.items[0];
       
       if (!lastItem?.link) continue;
 
       if (lastPosts[name] !== lastItem.link) {
-        // La création du webhook ne change pas
         const hook = new Webhook(webhooks[config.webhookKey]);
         
-        // On envoie l'embed formaté
-        const embed = formatDiscordPost(name, lastItem);
-        await hook.send(embed);
+        // On crée le message et on l'envoie
+        const messagePayload = formatDiscordPost(name, lastItem);
+        await hook.send(messagePayload);
         
         saveLastPost(name, lastItem.link);
         await new Promise(resolve => setTimeout(resolve, 800)); 
