@@ -1,4 +1,4 @@
-name: RSS to Discord 
+name: RSS to Discord
 
 on:
   schedule:
@@ -21,7 +21,7 @@ jobs:
         node-version: '18'
 
     - name: Install dependencies
-      run: npm install rss-parser @discordjs/webhook-client
+      run: npm install rss-parser discord.js
 
     - name: Run and Commit
       run: |
