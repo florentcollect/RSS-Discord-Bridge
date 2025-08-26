@@ -26,21 +26,30 @@ function saveLastPost(feedName, postLink) {
  * @returns {string|null} L'URL de l'image ou null si aucune n'est trouvée.
  */
 function findImageUrl(item) {
-  // Priorité N°1 : La balise <enclosure> (la plus fiable)
+  const content = item.content || item['content:encoded'] || '';
+
+  // ÉTAPE 1 : La balise <enclosure> (la plus fiable)
   if (item.enclosure && item.enclosure.url && item.enclosure.type.startsWith('image')) {
     return item.enclosure.url;
   }
 
-  // Priorité N°2 : La balise <media:content> (très courant sur les flux d'actualités)
+  // ÉTAPE 2 : La balise <media:content> (très courant)
   if (item['media:content'] && item['media:content'].$ && item['media:content'].$.url) {
     return item['media:content'].$.url;
   }
 
-  // Priorité N°3 : On cherche la première balise <img> dans le contenu HTML
-  const content = item.content || item['content:encoded'] || '';
-  const match = content.match(/<img[^>]+src="([^">]+)"/);
-  if (match && match[1]) {
-    return match[1]; // match[1] contient l'URL capturée
+  // NOUVELLE ÉTAPE 3 : On cherche dans l'attribut "srcset" (très efficace sur WordPress)
+  // On prend la première URL de la liste, qui est souvent de bonne qualité.
+  const srcsetMatch = content.match(/<img[^>]+srcset="([^"]+)"/);
+  if (srcsetMatch && srcsetMatch[1]) {
+    const sources = srcsetMatch[1].split(',').map(s => s.trim().split(' ')[0]);
+    return sources[0];
+  }
+
+  // ÉTAPE 4 AMÉLIORÉE : On cherche dans "src", en gérant les guillemets simples ou doubles.
+  const srcMatch = content.match(/<img[^>]+src=["']([^"']+)["']/);
+  if (srcMatch && srcMatch[1]) {
+    return srcMatch[1];
   }
 
   // Si on n'a absolument rien trouvé
@@ -65,14 +74,14 @@ function formatDiscordPost(feedName, item) {
     timestamp: new Date().toISOString()
   };
 
-  // 1. On essaie d'ajouter une description (le "chapeau")
+  // 1. On essaie d'ajouter une description
   if (item.contentSnippet) {
     embed.description = item.contentSnippet.length > 280 
       ? item.contentSnippet.substring(0, 277) + '...' 
       : item.contentSnippet;
   }
 
-  // 2. NOUVELLE LOGIQUE D'IMAGE : On utilise notre fonction de recherche
+  // 2. On utilise notre fonction de recherche d'image améliorée
   const imageUrl = findImageUrl(item);
   if (imageUrl) {
     embed.image = { url: imageUrl };
@@ -107,7 +116,6 @@ async function checkFeeds() {
         
         saveLastPost(name, lastItem.link);
         
-        // Petite pause pour éviter de spammer les APIs
         await new Promise(resolve => setTimeout(resolve, 1500));
       }
     } catch (error) {
