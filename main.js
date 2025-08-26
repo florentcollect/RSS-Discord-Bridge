@@ -1,5 +1,5 @@
 const RSSParser = require('rss-parser');
-const { Webhook } = require('webhook-discord'); // On n'a besoin que de Webhook
+const { Webhook } = require('webhook-discord');
 const fs = require('fs');
 
 // Configuration (rien ne change)
@@ -23,17 +23,15 @@ function saveLastPost(feedName, postLink) {
   fs.writeFileSync(LAST_POSTS_FILE, JSON.stringify(lastPosts, null, 2));
 }
 
-// *** C'est ici que la logique change ***
-// On va créer un objet "embed" manuellement, ce qui est plus standard.
 function formatDiscordPost(feedName, item) {
   return {
     embeds: [{
       author: {
-        name: feedName // Le nom du flux apparaît en haut
+        name: feedName
       },
       title: item.title,
       url: item.link,
-      color: 0x0099ff, // Couleur en format numérique
+      color: 0x0099ff,
       timestamp: new Date().toISOString()
     }]
   };
@@ -45,7 +43,6 @@ async function checkFeeds() {
 
   for (const [name, config] of Object.entries(feeds)) {
     try {
-      // Ajout d'une vérification pour l'erreur de config
       if (!config || typeof config.url !== 'string') {
         console.error(`[CONFIG ERREUR] Flux "${name}" a une configuration invalide dans feeds.json.`);
         continue;
@@ -57,14 +54,16 @@ async function checkFeeds() {
       if (!lastItem?.link) continue;
 
       if (lastPosts[name] !== lastItem.link) {
-        const hook = new Webhook(webhooks[config.webhookKey]);
+        // *** FIX N°1 : On passe l'URL dans un objet comme attendu par la librairie ***
+        const hook = new Webhook({ url: webhooks[config.webhookKey] });
         
-        // On crée le message et on l'envoie
         const messagePayload = formatDiscordPost(name, lastItem);
         await hook.send(messagePayload);
         
         saveLastPost(name, lastItem.link);
-        await new Promise(resolve => setTimeout(resolve, 800)); 
+
+        // *** FIX N°2 : On augmente la pause pour éviter le rate limit de Discord ***
+        await new Promise(resolve => setTimeout(resolve, 1500)); // Pause de 1.5 secondes
       }
     } catch (error) {
       console.error(`[ERREUR] Flux "${name}" :`, error.message);
