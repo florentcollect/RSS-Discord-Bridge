@@ -150,7 +150,7 @@
   "Torgan.net (Savage Worlds FR)": {
     "url": "https://savage.torgan.net/feed/",
     "webhookKey": "flux-rss"
-  ,
+  },
   "Viva La Dirt League": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCchBatdUMZoMfJ3rIzgV84g",
     "webhookKey": "flux-rss"
