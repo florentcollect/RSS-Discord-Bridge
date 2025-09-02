@@ -55,10 +55,6 @@
     "url": "https://feeds.feedburner.com/SciFi-Universe",
     "webhookKey": "flux-rss"
   },
-  "News": {
-    "url": "https://github.com/Gabryel666.atom",
-    "webhookKey": "flux-rss"
-  },
   "Au bazar d'Hectelyon": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0dvOdVXw_sHmb3w3RtJ2w",
     "webhookKey": "flux-rss"
