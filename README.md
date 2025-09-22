@@ -1,5 +1,17 @@
 # RSS-Discord-Bridge
 
+<p align="center">
+  <a href="https://github.com/Gabryel666/RSS-Discord-Bridge/releases" target="_blank">
+    <img src="https://img.shields.io/github/v/release/Gabryel666/RSS-Discord-Bridge" alt="Dernière Version">
+  </a>
+  <a href="https://github.com/Gabryel666/RSS-Discord-Bridge/blob/main/LICENSE" target="_blank">
+    <img src="https://img.shields.io/github/license/Gabryel666/RSS-Discord-Bridge" alt="Licence">
+  </a>
+  <a href="https://discord.gg/CrfgXxhu95" target="_blank">
+    <img src="https://img.shields.io/badge/Discord-Rejoignez_nous-7289DA?logo=discord&logoColor=white" alt="Invitation Discord">
+  </a>
+</p>
+
 An automated script that monitors RSS feeds and pushes new articles to Discord channels with multi-channel support.
 
 You can check the release notes by clicking on [Release notes](https://github.com/Gabryel666/RSS-Discord-Bridge/blob/main/release%20notes.md)
