@@ -18,11 +18,13 @@ You can check the release notes by clicking on [Release notes](https://github.co
 
 ## Key Features
 
-- **Multi-Channel Routing**: Send feeds to different Discord channels
-- **Multi-Feed Tracking**: Monitor unlimited RSS feeds (`feeds.json`)
-- **Duplicate Prevention**: Persistent memory of processed articles (`last_posts.json`)
-- **Scheduled Updates**: Configurable check frequency via GitHub Actions
-- **Clean Formatting**: Optimized Discord message display
+- **Exhaustive History Retrieval**: Retrieves *all* missed articles between checks, not just the latest one.
+- **Smart Desync Protection**: Prevents spam if a feed changes significantly or is new.
+- **Multi-Channel Routing**: Send feeds to different Discord channels.
+- **Multi-Feed Tracking**: Monitor unlimited RSS feeds (`feeds.json`).
+- **Duplicate Prevention**: Persistent memory of processed articles (`last_posts.json`).
+- **Scheduled Updates**: Configurable check frequency via GitHub Actions.
+- **Clean Formatting**: Optimized Discord message display.
 
 ## Quick Start
 
