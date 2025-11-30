@@ -20,7 +20,7 @@ jobs:
       with:
         node-version: '18'
 
-    - run: npm install rss-parser discord-webhook-node
+    - run: npm install rss-parser discord-webhook-node discord.js
 
     - name: Run and Commit
       run: |
