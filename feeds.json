@@ -35,7 +35,7 @@
     "url": "https://guerre-plomb.fr/feed/",
     "webhookKey": "actualites"
   },
-  "Geek Powa": {
+  "Geek Powa (Podcast)": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCJGoap50LL07tseuuCC6HAA",
     "webhookKey": "podcasts"
   },
@@ -58,9 +58,73 @@
   "SciFi-Universe actualités": {
     "url": "http://feeds.feedburner.com/SciFi-Universe",
     "webhookKey": "actualites"
-  }
-    "News": {
+  },
+  "News": {
     "url": "https://github.com/Gabryel666.atom",
     "webhookKey": "outils"
+  },
+  "Matthew Colville": {
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCs4br3oZLU0s62l_eIrdO_A",
+    "webhookKey": "podcasts"
+  },
+  "Au bazar d'Hectelyon": {
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0dvOdVXw_sHmb3w3RtJ2w",
+    "webhookKey": "podcasts"
+  },
+  "Caverne Du Rôliste": {
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCbOUtfPfrsqmlb1eOtCTfJA",
+    "webhookKey": "podcasts"
+  },
+  "Chaosium": {
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCdx6kNIZ4su6WiqLxcQSVfQ",
+    "webhookKey": "podcasts"
+  },
+  "EN World Live": {
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC3-MF1-fd-y3-2_m2C2d2-g",
+    "webhookKey": "podcasts"
+  },
+  "Ginny Di": {
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCe_sAHQJ_C6sWqA6a2y0fxA",
+    "webhookKey": "podcasts"
+  },
+  "EN World": {
+    "url": "http://www.enworld.org/forum/external.php?do=rss&type=newcontent&sectionid=1&days=120&count=20",
+    "webhookKey": "actualites"
+  },
+  "Dicebreaker": {
+    "url": "https://www.dicebreaker.com/feed",
+    "webhookKey": "actualites"
+  },
+  "Geek Native": {
+    "url": "https://www.geeknative.com/feed/",
+    "webhookKey": "actualites"
+  },
+  "RPGnews.com": {
+    "url": "https://www.rpg.net/reviews/rss/all.phtml",
+    "webhookKey": "actualites"
+  },
+  "The Gauntlet Blog": {
+    "url": "https://www.gauntlet-rpg.com/blog?format=rss",
+    "webhookKey": "actualites"
+  },
+  "Critical Role": {
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCpXBGqwsBkpvcYjsJBQ7LEQ",
+    "webhookKey": "podcasts"
+  },
+  "Shut Up & Sit Down": {
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCyRhIGDUKyC14_ZfO_e6V4g",
+    "webhookKey": "podcasts"
+  },
+  "The Dungeon Dudes": {
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCQDKouT6G_6P1eBQP4p7RdA",
+    "webhookKey": "podcasts"
+  },
+  "How to be a Great GM": {
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC1F4eMw3W_rHBfxf9_m1hbw",
+    "webhookKey": "podcasts"
+  },
+  "Web DM": {
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC7XFmdssWgaPzGyGbKk8GaQ",
+    "webhookKey": "podcasts"
   }
 }
