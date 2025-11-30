@@ -36,7 +36,7 @@ async function checkFeeds() {
     try {
       const feed = await parser.parseURL(config.url);
       const lastItem = feed.items[0];
-
+      
       if (!lastItem?.link) continue;
 
       if (lastPosts[name] !== lastItem.link) {
