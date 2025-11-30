@@ -11,7 +11,7 @@
     "url": "http://darmont.free.fr/?feed=rss2",
     "webhookKey": "actualites"
   },
-  "Geek Powa Web": {
+  "Geek Powa": {
     "url": "http://www.geek-powa.fr/feed/",
     "webhookKey": "actualites"
   },
@@ -35,21 +35,21 @@
     "url": "https://guerre-plomb.fr/feed/",
     "webhookKey": "actualites"
   },
-  "Geek Powa YouTube": {
+  "Geek Powa": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCJGoap50LL07tseuuCC6HAA",
-    "webhookKey": "actualites"
+    "webhookKey": "podcasts"
   },
   "La Cellule": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCSZik8DTUb6idR2t9easRBQ",
-    "webhookKey": "actualites"
+    "webhookKey": "podcasts"
   },
   "Rôliskatonic": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCszAVJ6A5mt3eKFN1GIzzow",
-    "webhookKey": "actualites"
+    "webhookKey": "podcasts"
   },
   "Ind100": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCiNjrf7Xv8x0R9u4EI2pgWQ",
-    "webhookKey": "actualites"
+    "webhookKey": "podcasts"
   },
   "SciFi-Universe critiques": {
     "url": "http://feeds.feedburner.com/SciFi-Universe-Critiques",
@@ -58,9 +58,9 @@
   "SciFi-Universe actualités": {
     "url": "http://feeds.feedburner.com/SciFi-Universe",
     "webhookKey": "actualites"
-  },
-  "News": {
+  }
+    "News": {
     "url": "https://github.com/Gabryel666.atom",
-    "webhookKey": "actualites"
+    "webhookKey": "outils"
   }
 }
