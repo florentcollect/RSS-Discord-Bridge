@@ -35,25 +35,21 @@
     "url": "https://guerre-plomb.fr/feed/",
     "webhookKey": "actualites"
   },
-  "Roliste TV": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCbM4Z7OzdBTip4fvMHvwG6A",
-    "webhookKey": "podcasts"
-  },
   "Geek Powa YouTube": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCJGoap50LL07tseuuCC6HAA",
-    "webhookKey": "podcasts"
+    "webhookKey": "actualites"
   },
   "La Cellule": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCSZik8DTUb6idR2t9easRBQ",
-    "webhookKey": "podcasts"
+    "webhookKey": "actualites"
   },
   "Rôliskatonic": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCszAVJ6A5mt3eKFN1GIzzow",
-    "webhookKey": "podcasts"
+    "webhookKey": "actualites"
   },
   "Ind100": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCiNjrf7Xv8x0R9u4EI2pgWQ",
-    "webhookKey": "podcasts"
+    "webhookKey": "actualites"
   },
   "SciFi-Universe critiques": {
     "url": "http://feeds.feedburner.com/SciFi-Universe-Critiques",
@@ -65,6 +61,6 @@
   },
   "News": {
     "url": "https://github.com/Gabryel666.atom",
-    "webhookKey": "outils"
+    "webhookKey": "actualites"
   }
 }
