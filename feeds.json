@@ -1,130 +1,98 @@
 {
   "Le Fix": {
-    "url": "https://lefix.di6dent.fr/feed",
-    "webhookKey": "actualites"
+    "url": "https://lefix.di6dent.fr/feed"
   },
   "Le Grog": {
-    "url": "https://www.legrog.org/informations/syndication/accueil",
-    "webhookKey": "actualites"
+    "url": "https://www.legrog.org/informations/syndication/accueil"
   },
   "Le Cyberspace de Jérôme Darmont": {
-    "url": "http://darmont.free.fr/?feed=rss2",
-    "webhookKey": "actualites"
+    "url": "http://darmont.free.fr/?feed=rss2"
   },
   "Geek Powa": {
-    "url": "http://www.geek-powa.fr/feed/",
-    "webhookKey": "actualites"
+    "url": "http://www.geek-powa.fr/feed/"
   },
   "Radio Rôliste": {
-    "url": "http://www.radio-roliste.net/?feed=rss2",
-    "webhookKey": "actualites"
+    "url": "http://www.radio-roliste.net/?feed=rss2"
   },
   "PTGPTB": {
-    "url": "http://ptgptb.fr/rss.xml",
-    "webhookKey": "actualites"
+    "url": "http://ptgptb.fr/rss.xml"
   },
   "Jeuxderole.com": {
-    "url": "https://www.jeuxderole.com/feed/",
-    "webhookKey": "actualites"
+    "url": "https://www.jeuxderole.com/feed/"
   },
   "Hugin & Munin": {
-    "url": "http://hu-mu.blogspot.com/feeds/posts/default",
-    "webhookKey": "actualites"
+    "url": "http://hu-mu.blogspot.com/feeds/posts/default"
   },
   "Guerre & plomb JDR": {
-    "url": "https://guerre-plomb.fr/feed/",
-    "webhookKey": "actualites"
+    "url": "https://guerre-plomb.fr/feed/"
   },
   "Geek Powa (Podcast)": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCJGoap50LL07tseuuCC6HAA",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCJGoap50LL07tseuuCC6HAA"
   },
   "La Cellule": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCSZik8DTUb6idR2t9easRBQ",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCSZik8DTUb6idR2t9easRBQ"
   },
   "Rôliskatonic": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCszAVJ6A5mt3eKFN1GIzzow",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCszAVJ6A5mt3eKFN1GIzzow"
   },
   "Ind100": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCiNjrf7Xv8x0R9u4EI2pgWQ",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCiNjrf7Xv8x0R9u4EI2pgWQ"
   },
   "SciFi-Universe critiques": {
-    "url": "http://feeds.feedburner.com/SciFi-Universe-Critiques",
-    "webhookKey": "actualites"
+    "url": "http://feeds.feedburner.com/SciFi-Universe-Critiques"
   },
   "SciFi-Universe actualités": {
-    "url": "http://feeds.feedburner.com/SciFi-Universe",
-    "webhookKey": "actualites"
+    "url": "http://feeds.feedburner.com/SciFi-Universe"
   },
   "News": {
-    "url": "https://github.com/Gabryel666.atom",
-    "webhookKey": "outils"
+    "url": "https://github.com/Gabryel666.atom"
   },
   "Matthew Colville": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCs4br3oZLU0s62l_eIrdO_A",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCs4br3oZLU0s62l_eIrdO_A"
   },
   "Au bazar d'Hectelyon": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0dvOdVXw_sHmb3w3RtJ2w",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0dvOdVXw_sHmb3w3RtJ2w"
   },
   "Caverne Du Rôliste": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCbOUtfPfrsqmlb1eOtCTfJA",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCbOUtfPfrsqmlb1eOtCTfJA"
   },
   "Chaosium": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCdx6kNIZ4su6WiqLxcQSVfQ",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCdx6kNIZ4su6WiqLxcQSVfQ"
   },
   "EN World Live": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC3-MF1-fd-y3-2_m2C2d2-g",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC3-MF1-fd-y3-2_m2C2d2-g"
   },
   "Ginny Di": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCe_sAHQJ_C6sWqA6a2y0fxA",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCe_sAHQJ_C6sWqA6a2y0fxA"
   },
   "EN World": {
-    "url": "http://www.enworld.org/forum/external.php?do=rss&type=newcontent&sectionid=1&days=120&count=20",
-    "webhookKey": "actualites"
+    "url": "http://www.enworld.org/forum/external.php?do=rss&type=newcontent&sectionid=1&days=120&count=20"
   },
   "Dicebreaker": {
-    "url": "https://www.dicebreaker.com/feed",
-    "webhookKey": "actualites"
+    "url": "https://www.dicebreaker.com/feed"
   },
   "Geek Native": {
-    "url": "https://www.geeknative.com/feed/",
-    "webhookKey": "actualites"
+    "url": "https://www.geeknative.com/feed/"
   },
   "RPGnews.com": {
-    "url": "https://www.rpg.net/reviews/rss/all.phtml",
-    "webhookKey": "actualites"
+    "url": "https://www.rpg.net/reviews/rss/all.phtml"
   },
   "The Gauntlet Blog": {
-    "url": "https://www.gauntlet-rpg.com/blog?format=rss",
-    "webhookKey": "actualites"
+    "url": "https://www.gauntlet-rpg.com/blog?format=rss"
   },
   "Critical Role": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCpXBGqwsBkpvcYjsJBQ7LEQ",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCpXBGqwsBkpvcYjsJBQ7LEQ"
   },
   "Shut Up & Sit Down": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCyRhIGDUKyC14_ZfO_e6V4g",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCyRhIGDUKyC14_ZfO_e6V4g"
   },
   "The Dungeon Dudes": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCQDKouT6G_6P1eBQP4p7RdA",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCQDKouT6G_6P1eBQP4p7RdA"
   },
   "How to be a Great GM": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC1F4eMw3W_rHBfxf9_m1hbw",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC1F4eMw3W_rHBfxf9_m1hbw"
   },
   "Web DM": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC7XFmdssWgaPzGyGbKk8GaQ",
-    "webhookKey": "podcasts"
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC7XFmdssWgaPzGyGbKk8GaQ"
   }
 }
