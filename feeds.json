@@ -100,5 +100,11 @@
   },
   "Modiphius Entertainment": {
     "url": "https://www.modiphius.net/blogs/news.atom"
+  },
+  "Agate Éditions": {
+    "url": "https://agate-rpg.blogspot.com/feeds/posts/default"
+  },
+  "Edge Studio": {
+    "url": "https://www.edge-studio.net/feed/"
   }
 }
