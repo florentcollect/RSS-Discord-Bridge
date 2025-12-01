@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - uses: actions/setup-node@v4
       with:
@@ -30,7 +32,13 @@ jobs:
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        
+        # Pull latest changes first
+        git stash --include-untracked
+        git pull --rebase origin main
+        git stash pop || true
+        
+        # Now commit and push
         git add last_posts.json
         git diff --staged --quiet || git commit -m "Update last_posts.json [AUTO]"
-        git pull --rebase origin main
         git push
