@@ -8,27 +8,43 @@ on:
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-    permissions:  # <-- Nouvelle section cruciale !
-      contents: write  # Donne l'accès en écriture
+    permissions:
+      contents: write
 
     steps:
     - uses: actions/checkout@v4
+
+    - uses: actions/setup-node@v4
       with:
-        persist-credentials: false  # Important pour le push
+        node-version: '20'
 
-    - uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+    - name: Install dependencies
+      run: npm install rss-parser discord-webhook-node
 
-    - run: npm install rss-parser discord-webhook-node
-
-    - name: Run and Commit
+    - name: Debug - Check files
       run: |
-        node main.js
+        echo "=== Checking files ==="
+        ls -la
+        echo "=== main.js content ==="
+        head -20 main.js
+        echo "=== feeds.json first 10 lines ==="
+        head -10 feeds.json
+
+    - name: Debug - Check env
+      run: |
+        echo "DISCORD_WEBHOOK is set: ${{ secrets.DISCORD_WEBHOOK != '' }}"
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+
+    - name: Run RSS checker
+      run: node main.js
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+
+    - name: Commit changes
+      run: |
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         git add last_posts.json
-        git commit -m "Update last_posts.json [AUTO]" || echo "Aucun changement"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        git diff --staged --quiet || git commit -m "Update last_posts.json [AUTO]"
+        git push
