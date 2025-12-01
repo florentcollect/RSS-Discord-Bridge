@@ -74,20 +74,8 @@
   "Geek Native": {
     "url": "https://www.geeknative.com/feed/"
   },
-  "RPGnews.com": {
-    "url": "https://www.rpg.net/reviews/rss/all.phtml"
-  },
-  "The Gauntlet Blog": {
-    "url": "https://www.gauntlet-rpg.com/blog?format=rss"
-  },
   "Critical Role": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCpXBGqwsBkpvcYjsJBQ7LEQ"
-  },
-  "Shut Up & Sit Down": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCyRhIGDUKyC14_ZfO_e6V4g"
-  },
-  "The Dungeon Dudes": {
-    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCQDKouT6G_6P1eBQP4p7RdA"
   },
   "How to be a Great GM": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC1F4eMw3W_rHBfxf9_m1hbw"
