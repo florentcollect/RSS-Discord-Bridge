@@ -79,5 +79,26 @@
   },
   "Web DM": {
     "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC7XFmdssWgaPzGyGbKk8GaQ"
+  },
+  "Free League Publishing": {
+    "url": "https://freeleaguepublishing.com/feed/"
+  },
+  "Critical Role (Blog)": {
+    "url": "https://critrole.com/feed/"
+  },
+  "Kobold Press": {
+    "url": "https://koboldpress.com/feed/"
+  },
+  "Monte Cook Games": {
+    "url": "https://www.montecookgames.com/feed/"
+  },
+  "Evil Hat Productions": {
+    "url": "https://evilhat.com/feed/"
+  },
+  "Pelgrane Press": {
+    "url": "https://pelgranepress.com/feed/"
+  },
+  "Modiphius Entertainment": {
+    "url": "https://www.modiphius.net/blogs/news.atom"
   }
 }
