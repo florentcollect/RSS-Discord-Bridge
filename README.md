@@ -1,116 +1,102 @@
 # RSS-Discord-Bridge
 
 <p align="center">
-  <a href="https://github.com/Gabryel666/RSS-Discord-Bridge/releases" target="_blank">
-    <img src="https://img.shields.io/github/v/release/Gabryel666/RSS-Discord-Bridge" alt="Dernière Version">
+  <a href="https://github.com/florentcollect/RSS-Discord-Bridge/releases" target="_blank">
+    <img src="https://img.shields.io/github/v/release/florentcollect/RSS-Discord-Bridge" alt="Dernière Version">
   </a>
-  <a href="https://github.com/Gabryel666/RSS-Discord-Bridge/blob/main/LICENSE" target="_blank">
-    <img src="https://img.shields.io/github/license/Gabryel666/RSS-Discord-Bridge" alt="Licence">
-  </a>
-  <a href="https://discord.gg/CrfgXxhu95" target="_blank">
-    <img src="https://img.shields.io/badge/Discord-Rejoignez_nous-7289DA?logo=discord&logoColor=white" alt="Invitation Discord">
+  <a href="https://github.com/florentcollect/RSS-Discord-Bridge/blob/main/LICENSE" target="_blank">
+    <img src="https://img.shields.io/github/license/florentcollect/RSS-Discord-Bridge" alt="Licence">
   </a>
 </p>
 
-An automated script that monitors RSS feeds and pushes new articles to Discord channels with multi-channel support.
+Un script automatisé qui surveille des flux RSS et envoie les nouveaux articles sur Discord.
 
-You can check the release notes by clicking on [Release notes](https://github.com/Gabryel666/RSS-Discord-Bridge/blob/main/release%20notes.md)
+## ✨ Fonctionnalités
 
-## Key Features
+- 📡 **38 flux RSS** surveillés (blogs JDR, chaînes YouTube, éditeurs)
+- 🔔 **Notifications Discord** automatiques pour les nouveaux articles
+- ⏰ **Vérification toutes les 30 minutes** via GitHub Actions
+- 🚫 **Anti-doublons** : ne publie jamais deux fois le même article
+- 🎲 **Focus JDR** : éditeurs FR/EN, podcasts, actualités rôlistes
 
-- **Exhaustive History Retrieval**: Retrieves *all* missed articles between checks, not just the latest one.
-- **Smart Desync Protection**: Prevents spam if a feed changes significantly or is new.
-- **Multi-Channel Routing**: Send feeds to different Discord channels.
-- **Multi-Feed Tracking**: Monitor unlimited RSS feeds (`feeds.json`).
-- **Duplicate Prevention**: Persistent memory of processed articles (`last_posts.json`).
-- **Scheduled Updates**: Configurable check frequency via GitHub Actions.
-- **Clean Formatting**: Optimized Discord message display.
+## 📋 Flux inclus
 
-## Quick Start
+### 🇫🇷 Communauté française
+- Le Fix, Le Grog, PTGPTB, Radio Rôliste
+- Geek Powa, La Cellule, Rôliskatonic, Ind100
+- Hugin & Munin, Guerre & plomb JDR, Jeuxderole.com
 
-1. **Clone the repository**:
+### 🇫🇷 Éditeurs français
+- Agate Éditions (Ombres d'Esteren, Dragons, 7e Mer)
+- Edge Studio (Star Wars, L5R)
 
-   ```
-   git clone https://github.com/Gabryel666/RSS-Discord-Bridge.git
-   cd RSS-Discord-Bridge
-   ```
+### 🌍 Éditeurs internationaux
+- Free League Publishing (Alien, Blade Runner, Vaesen)
+- Kobold Press (Tales of the Valiant)
+- Monte Cook Games (Numenera, Cypher)
+- Evil Hat Productions (Fate, Blades in the Dark)
+- Pelgrane Press (Trail of Cthulhu, 13th Age)
+- Modiphius (Star Trek, Fallout, Dune)
+- Critical Role / Darrington Press
 
-2. **Configure feeds**:
-    Edit `feeds.json` with channel routing (unique name required)
+### 📺 Chaînes YouTube
+- Matthew Colville, Critical Role, Chaosium
+- How to be a Great GM, Web DM, Ginny Di
+- Roll For Combat, Imagine ton aventure
+- Et plus encore...
 
-   ```
-   {
-     "Hugin & Munin": {
-       "url": "https://example.com/feed.rss",
-       "webhookKey": "news"
-     },
-     "Le Grog": {
-       "url": "https://www.legrog.org/rss",
-       "webhookKey": "gaming"
-     }
-   }
-   ```
+## 🚀 Installation
 
-3. **Set up Discord webhooks**:
+1. **Fork ce repository**
 
-   - Create webhooks for each channel in Discord settings
+2. **Configurer le webhook Discord** :
+   - Créer un webhook dans les paramètres de ton serveur Discord
+   - Aller dans Settings → Secrets and variables → Actions
+   - Créer un secret `DISCORD_WEBHOOK` avec l'URL du webhook
 
-   - Add them to GitHub Secrets as JSON:
+3. **C'est tout !** Le workflow s'exécute automatiquement toutes les 30 minutes.
 
-     ```
-     {
-       "news": "https://discord.com/api/webhooks/...",
-       "gaming": "https://discord.com/api/webhooks/..."
-     }
-     ```
+## ⚙️ Configuration
 
-   - Secret name: `DISCORD_WEBHOOKS`
-
-## Technical Overview
-
-```mermaid
-sequenceDiagram
-    participant GA as GitHub Actions
-    participant Script
-    participant RSS as RSS Feeds
-    participant Discord
-
-    GA->>Script: Déclenchement programmé
-    Script->>RSS: Requête GET
-    RSS-->>Script: Nouveaux articles
-    Script->>Discord: Envoi ciblé
-    Note right of Script: Route vers le bon salon
-    Script->>GA: Mise à jour last_posts.json
+### Modifier la fréquence
+Éditer `.github/workflows/rss-check.yml` :
+```yaml
+schedule:
+  - cron: '*/30 * * * *'  # Toutes les 30 minutes
 ```
 
-## File Structure
+### Ajouter un flux RSS
+Éditer `feeds.json` :
+```json
+{
+  "Nom du flux": {
+    "url": "https://example.com/feed"
+  }
+}
+```
+
+### Ajouter une chaîne YouTube
+Trouver le Channel ID et ajouter dans `feeds.json` :
+```json
+{
+  "Nom de la chaîne": {
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC..."
+  }
+}
+```
+
+## 📁 Structure
 
 ```
 .
-├── .github/
-│   └── workflows/
-│       └── rss-check.yml    # Automation config
-├── feeds.json               # Feed list with channel routing
-├── last_posts.json          # Processed articles (auto-generated)
-└── main.js                  # Core processing script
+├── .github/workflows/
+│   └── rss-check.yml    # Automatisation GitHub Actions
+├── feeds.json           # Liste des flux RSS
+├── last_posts.json      # Mémoire des articles traités (auto-généré)
+├── main.js              # Script principal
+└── package.json
 ```
 
-## Customization
+## 📄 Licence
 
-### Change Check Frequency
-
-Edit `.github/workflows/rss-check.yml`:
-
-```
-- cron: '*/30 * * * *'  # Every 30 minutes
-```
-
-### Available Intervals:
-
-- `'*/15 * * * *'` - Every 15 minutes
-- `'0 * * * *'` - Hourly
-- `'0 0 * * *'` - Daily
-
-## 📄 License
-
-MIT © [Gabryel666] - Free for use and modification
+MIT © [florentcollect]
