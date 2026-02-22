@@ -2,26 +2,64 @@ const RSSParser = require('rss-parser');
 const { Webhook } = require('discord-webhook-node');
 const fs = require('fs');
 
-// Gestion des doublons
+// Configuration anti-doublons
 const LAST_POSTS_FILE = 'last_posts.json';
+const MAX_HISTORY_PER_FEED = 5; // Nombre de posts mémorisés par flux
 
+/**
+ * Charge l'historique des posts.
+ * Gère la migration depuis l'ancien format (string) vers le nouveau (array).
+ */
 function loadLastPosts() {
   try {
     if (!fs.existsSync(LAST_POSTS_FILE)) {
       fs.writeFileSync(LAST_POSTS_FILE, '{}');
       return {};
     }
-    return JSON.parse(fs.readFileSync(LAST_POSTS_FILE, 'utf8'));
+    const data = JSON.parse(fs.readFileSync(LAST_POSTS_FILE, 'utf8'));
+    
+    // Migration : ancien format (une string par feed) -> nouveau format (array)
+    for (const [key, value] of Object.entries(data)) {
+      if (typeof value === 'string') {
+        data[key] = [value];
+      }
+    }
+    
+    return data;
   } catch (err) {
     console.error('Erreur lecture last_posts.json:', err.message);
     return {};
   }
 }
 
-function saveLastPost(feedName, postLink) {
-  const lastPosts = loadLastPosts();
-  lastPosts[feedName] = postLink;
+/**
+ * Sauvegarde l'historique complet sur disque.
+ */
+function saveAllPosts(lastPosts) {
   fs.writeFileSync(LAST_POSTS_FILE, JSON.stringify(lastPosts, null, 2));
+}
+
+/**
+ * Vérifie si un lien a déjà été publié pour ce flux.
+ */
+function isAlreadyPosted(lastPosts, feedName, link) {
+  const history = lastPosts[feedName] || [];
+  return history.includes(link);
+}
+
+/**
+ * Enregistre un nouveau post dans l'historique d'un flux.
+ * Garde uniquement les N derniers pour éviter que le fichier grossisse.
+ */
+function recordPost(lastPosts, feedName, link) {
+  if (!lastPosts[feedName]) {
+    lastPosts[feedName] = [];
+  }
+  lastPosts[feedName].unshift(link);
+  // Garder uniquement les MAX_HISTORY_PER_FEED derniers
+  if (lastPosts[feedName].length > MAX_HISTORY_PER_FEED) {
+    lastPosts[feedName] = lastPosts[feedName].slice(0, MAX_HISTORY_PER_FEED);
+  }
 }
 
 // Formatage Discord
@@ -72,20 +110,24 @@ async function main() {
         continue;
       }
 
-      if (lastPosts[name] !== lastItem.link) {
+      if (isAlreadyPosted(lastPosts, name, lastItem.link)) {
+        console.log(`  -> Déjà publié`);
+      } else {
         console.log(`  -> NOUVEAU: ${lastItem.title.substring(0, 50)}...`);
         await webhook.send(formatDiscordPost(name, lastItem));
-        saveLastPost(name, lastItem.link);
+        recordPost(lastPosts, name, lastItem.link);
         newPosts++;
-        await new Promise(resolve => setTimeout(resolve, 1000));
-      } else {
-        console.log(`  -> Pas de nouveau post`);
+        // Pause entre les envois pour éviter le rate limiting Discord
+        await new Promise(resolve => setTimeout(resolve, 1500));
       }
     } catch (error) {
       errors++;
       console.error(`  -> ERREUR: ${error.message}`);
     }
   }
+  
+  // Sauvegarde unique en fin de traitement (pas à chaque post)
+  saveAllPosts(lastPosts);
   
   console.log('=== Terminé ===');
   console.log(`Flux traités: ${processed}`);
