@@ -5,6 +5,11 @@ on:
     - cron: '*/30 * * * *'
   workflow_dispatch:
 
+# Empêche les exécutions parallèles (cause principale des doublons)
+concurrency:
+  group: rss-check
+  cancel-in-progress: false
+
 jobs:
   run-bot:
     runs-on: ubuntu-latest
@@ -33,12 +38,26 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         
-        # Pull latest changes first
-        git stash --include-untracked
-        git pull --rebase origin main
-        git stash pop || true
-        
-        # Now commit and push
         git add last_posts.json
-        git diff --staged --quiet || git commit -m "Update last_posts.json [AUTO]"
-        git push
+        
+        # Vérifier s'il y a des changements à commiter
+        if git diff --staged --quiet; then
+          echo "Pas de changement dans last_posts.json"
+          exit 0
+        fi
+        
+        git commit -m "Update last_posts.json [AUTO]"
+        
+        # Tentative de push avec retry en cas de conflit
+        MAX_RETRIES=3
+        for i in $(seq 1 $MAX_RETRIES); do
+          if git push origin main; then
+            echo "Push réussi"
+            exit 0
+          fi
+          echo "Push échoué (tentative $i/$MAX_RETRIES), pull et retry..."
+          git pull --rebase origin main
+        done
+        
+        echo "ERREUR: Push impossible après $MAX_RETRIES tentatives"
+        exit 1
