@@ -64,7 +64,8 @@ function recordPost(lastPosts, feedName, link) {
 
 // Formatage Discord
 function formatDiscordPost(feedName, item) {
-  return `\u200b\n🔔 **${feedName}**\n# [${item.title}](${item.link})`;
+  // Les <> autour du lien empêchent Discord de générer un embed de preview
+  return `\u200b\n🔔 **${feedName}**\n## ${item.title}\n<${item.link}>`;
 }
 
 async function main() {
