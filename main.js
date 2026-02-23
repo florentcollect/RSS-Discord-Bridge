@@ -5,6 +5,7 @@ const fs = require('fs');
 // Configuration anti-doublons
 const LAST_POSTS_FILE = 'last_posts.json';
 const MAX_HISTORY_PER_FEED = 5; // Nombre de posts mémorisés par flux
+const FEED_TIMEOUT_MS = 15000; // 15 secondes max par flux
 
 /**
  * Charge l'historique des posts.
@@ -62,6 +63,18 @@ function recordPost(lastPosts, feedName, link) {
   }
 }
 
+/**
+ * Parse un flux RSS avec un timeout pour éviter que les flux lents bloquent tout.
+ */
+function parseWithTimeout(parser, url, timeoutMs) {
+  return Promise.race([
+    parser.parseURL(url),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error(`Timeout après ${timeoutMs / 1000}s`)), timeoutMs)
+    )
+  ]);
+}
+
 // Formatage Discord
 function formatDiscordPost(feedName, item) {
   // Les <> autour du lien empêchent Discord de générer un embed de preview
@@ -69,6 +82,7 @@ function formatDiscordPost(feedName, item) {
 }
 
 async function main() {
+  const startTime = Date.now();
   console.log('=== Démarrage RSS Discord Bridge ===');
   
   // Vérification du webhook
@@ -97,13 +111,14 @@ async function main() {
   let processed = 0;
   let newPosts = 0;
   let errors = 0;
+  let timeouts = 0;
 
   for (const [name, config] of Object.entries(feeds)) {
     processed++;
     try {
       console.log(`[${processed}/${Object.keys(feeds).length}] ${name}...`);
       
-      const feed = await parser.parseURL(config.url);
+      const feed = await parseWithTimeout(parser, config.url, FEED_TIMEOUT_MS);
       const lastItem = feed.items[0];
       
       if (!lastItem?.link) {
@@ -123,17 +138,24 @@ async function main() {
       }
     } catch (error) {
       errors++;
-      console.error(`  -> ERREUR: ${error.message}`);
+      if (error.message.includes('Timeout')) {
+        timeouts++;
+        console.error(`  -> TIMEOUT: ${name} n'a pas répondu en ${FEED_TIMEOUT_MS / 1000}s`);
+      } else {
+        console.error(`  -> ERREUR: ${error.message}`);
+      }
     }
   }
   
   // Sauvegarde unique en fin de traitement (pas à chaque post)
   saveAllPosts(lastPosts);
   
+  const duration = ((Date.now() - startTime) / 1000).toFixed(1);
   console.log('=== Terminé ===');
+  console.log(`Durée totale: ${duration}s`);
   console.log(`Flux traités: ${processed}`);
   console.log(`Nouveaux posts: ${newPosts}`);
-  console.log(`Erreurs: ${errors}`);
+  console.log(`Erreurs: ${errors} (dont ${timeouts} timeouts)`);
 }
 
 main().catch(err => {
