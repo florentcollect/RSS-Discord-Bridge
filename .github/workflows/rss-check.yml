@@ -2,7 +2,7 @@ name: RSS to Discord
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 # Empêche les exécutions parallèles (cause principale des doublons)
@@ -13,6 +13,7 @@ concurrency:
 jobs:
   run-bot:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: write
 
