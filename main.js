@@ -207,7 +207,9 @@ async function main() {
   console.log(`Erreurs: ${errors} (dont ${timeouts} timeouts)`);
 }
 
-main().catch(err => {
+main().then(() => {
+  process.exit(0);
+}).catch(err => {
   console.error('ERREUR FATALE:', err);
   process.exit(1);
 });
